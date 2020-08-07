@@ -1,12 +1,4 @@
-<mat-card>
-      <mat-calendar 
-      [selected]="selectedDate" 
-      [startAt]="startAt"
-      [minDate]="minDate" 
-      [maxDate]="maxDate" 
-      [dateFilter]="myDateFilter"
-      (selectedChange)="onSelect($event)">
-      </mat-calendar>
-    </mat-card>
 
-      <p class="cal_date">{{DayAndDate}}, {{year}}</p>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
