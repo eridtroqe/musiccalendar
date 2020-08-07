@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppState } from '../store/app.state';
+import { Store } from '@ngrx/store';
+import { getPostsRequest } from '../store/actions/posts.actions';
 
 @Component({
   selector: 'app-calendar',
@@ -7,20 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  title = 'ng-calendar-demo';
-  selectedDate = new Date('2019/09/26');
+  // title = 'ng-calendar-demo';
+  selectedDate = new Date();
   startAt = new Date('2019/09/11');
   minDate = new Date('2019/09/14');
   maxDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
   year: any;
   DayAndDate: string;
 
-  constructor(){
+  constructor(private store: Store<AppState>){
     this.onSelect(this.selectedDate);
   }
 
   ngOnInit(){
-
+   this.store.dispatch(getPostsRequest());
   }
   
   onSelect(event) {
@@ -32,9 +35,4 @@ export class CalendarComponent implements OnInit {
     this.DayAndDate = dateValue[0] + ',' + ' ' + dateValue[1] + ' ' + dateValue[2];
   }
 
-  myDateFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6 ;
-  }
 }

@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/user");
-// const postRoutes = require("./routes/posts");
+const postRoutes = require("./routes/posts");
 
 
 const app = express();
@@ -38,7 +38,7 @@ mongoose
   });
 
   app.use("/api/user", userRoutes);
-//   app.use("/api/posts", postRoutes);
+  app.use("/api/posts", postRoutes);
 
   app.use((req, res, next) => {
     res.sendFile(path.join(__dirname,"music", "index.html"));

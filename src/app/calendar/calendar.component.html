@@ -2,10 +2,6 @@
 <mat-card class="mat-elevation-z4" >
   <mat-calendar 
   [selected]="selectedDate" 
-  [startAt]="startAt"
-  [minDate]="minDate" 
-  [maxDate]="maxDate" 
-  [dateFilter]="myDateFilter"
   (selectedChange)="onSelect($event)">
   </mat-calendar>
 </mat-card>
