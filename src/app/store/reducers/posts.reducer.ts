@@ -4,7 +4,7 @@ import { logout } from '../actions/auth.actions';
 import { Post } from '../../model/post.interface';
 
 export interface State {
-    posts: Array<Post>;
+    posts?: Array<Post>;
     post: Post;
     totalPosts: number;
     error: string;
@@ -21,13 +21,13 @@ export const initialState: State = {
 
 const postReducer = createReducer(
     initialState,
-    on(postsActions.getPostsSuccess, (state: State, {payload}) => (
+    on(postsActions.getPostsSuccess, (state: State, { payload }) => (
         {
             ...state,
             posts: payload.posts,
-            totalPosts: payload.postsCount
+            totalPosts: payload.maxPosts
         }
-    ) ),
+    )),
     on(logout, () => initialState),
 );
 

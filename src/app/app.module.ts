@@ -17,30 +17,33 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { PostsEffects } from './store/effects/posts.effects';
+import { ListPostsComponent } from './list-posts/list-posts.component';
 
 
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    CalendarComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    AngularMaterialModule,
-    StoreModule.forRoot(reducers, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AuthEffects, PostsEffects])
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      LoginComponent,
+      CalendarComponent,
+      HeaderComponent,
+      ListPostsComponent
+   ],
+   imports: [
+      BrowserModule,
+      BrowserAnimationsModule,
+      FormsModule,
+      HttpClientModule,
+      AppRoutingModule,
+      AngularMaterialModule,
+      StoreModule.forRoot(reducers, {}),
+      StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+      EffectsModule.forRoot([AuthEffects, PostsEffects])
+   ],
+   providers: [],
+   bootstrap: [AppComponent],
+   entryComponents: [ListPostsComponent]
 })
 export class AppModule { }

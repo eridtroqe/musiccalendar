@@ -10,5 +10,5 @@ export interface Post {
 export interface PostsResponse {
     message: string;
     posts: Array<Post>;
-    postsCount: number;
+    maxPosts: number;
 }

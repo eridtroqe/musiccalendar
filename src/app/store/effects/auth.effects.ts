@@ -6,6 +6,7 @@ import { loginRequest, loginSuccess, loginFailure, logout } from '../actions/aut
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { getPostsRequest } from '../actions/posts.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -20,7 +21,8 @@ export class AuthEffects {
              map(action => action.payload),
              mergeMap((data) =>
                  this.auth.login(data.email, data.password).pipe(
-                     map(res => loginSuccess({token: res.token, email: res.email })),
+    mergeMap(res =>[ loginSuccess({token: res.token, email: res.email }),
+                   ]),
                      catchError(error => of(loginFailure({ error }))))
                  ),
      );

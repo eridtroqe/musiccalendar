@@ -3,6 +3,7 @@ import { authFalse, authTrue } from './store/actions/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.state';
 import { EndpointService } from './endpoint/endpoint.service';
+import { getPostsRequest } from './store/actions/posts.actions';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
 
 ngOnInit() {
 const authToken = this.authService.getToken();
+
+this.store.dispatch(getPostsRequest());
 if (!authToken) {
 this.store.dispatch(authFalse());
 } else {

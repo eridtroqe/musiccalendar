@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-header></app-header>\n<mat-card class=\"mat-elevation-z4\" >\n  <mat-calendar \n  [selected]=\"selectedDate\" \n  (selectedChange)=\"onSelect($event)\">\n  </mat-calendar>\n</mat-card>\n  <p class=\"cal_date\">{{DayAndDate}}, {{year}}</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-header></app-header>\n<mat-card class=\"mat-elevation-z4\" >\n  <mat-calendar \n  [selected]=\"selectedDate\"\n  [dateClass]=\"getClass()\"\n  (selectedChange)=\"onSelect($event)\">\n  </mat-calendar>\n</mat-card>\n  <p class=\"cal_date\">{{DayAndDate}}, {{year}}</p>\n");
 
 /***/ }),
 
@@ -611,7 +611,7 @@ AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("mat-card {\n  width: 25rem;\n  margin: 2rem auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FsZW5kYXIvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcY2FsZW5kYXJcXGNhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jYWxlbmRhci9jYWxlbmRhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLFlBQUE7RUFDQSxpQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvY2FsZW5kYXIvY2FsZW5kYXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxubWF0LWNhcmR7XHJcbiAgICB3aWR0aDogMjVyZW07XHJcbiAgICBtYXJnaW46IDJyZW0gYXV0bztcclxufSIsIm1hdC1jYXJkIHtcbiAgd2lkdGg6IDI1cmVtO1xuICBtYXJnaW46IDJyZW0gYXV0bztcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("mat-card {\n  width: 25rem;\n  margin: 2rem auto;\n}\n\n.has-releases {\n  background-color: green;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FsZW5kYXIvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcY2FsZW5kYXJcXGNhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jYWxlbmRhci9jYWxlbmRhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLFlBQUE7RUFDQSxpQkFBQTtBQ0FKOztBREdBO0VBQ0ksdUJBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL2NhbGVuZGFyL2NhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbm1hdC1jYXJke1xyXG4gICAgd2lkdGg6IDI1cmVtO1xyXG4gICAgbWFyZ2luOiAycmVtIGF1dG87XHJcbn1cclxuXHJcbi5oYXMtcmVsZWFzZXN7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcclxufSIsIm1hdC1jYXJkIHtcbiAgd2lkdGg6IDI1cmVtO1xuICBtYXJnaW46IDJyZW0gYXV0bztcbn1cblxuLmhhcy1yZWxlYXNlcyB7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xufSJdfQ== */");
 
 /***/ }),
 
@@ -629,6 +629,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
 /* harmony import */ var _store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/posts.actions */ "./src/app/store/actions/posts.actions.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/reducers/posts.reducer */ "./src/app/store/reducers/posts.reducer.ts");
+
+
 
 
 
@@ -641,10 +645,16 @@ let CalendarComponent = class CalendarComponent {
         this.startAt = new Date('2019/09/11');
         this.minDate = new Date('2019/09/14');
         this.maxDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
+        this.releaseDates = [];
+        this.subscriptions = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
         this.onSelect(this.selectedDate);
+        this.store.dispatch(Object(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__["getPostsRequest"])());
     }
     ngOnInit() {
-        this.store.dispatch(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__["getPostsRequest"]);
+        this.subscriptions.add(this.store.select(_store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_5__["getSongsReleaseDates"]).subscribe(dates => this.releaseDates = dates));
+    }
+    ngOnDestroy() {
+        this.subscriptions.unsubscribe();
     }
     onSelect(event) {
         console.log(event);
@@ -653,6 +663,15 @@ let CalendarComponent = class CalendarComponent {
         const dateValue = dateString.split(' ');
         this.year = dateValue[3];
         this.DayAndDate = dateValue[0] + ',' + ' ' + dateValue[1] + ' ' + dateValue[2];
+    }
+    getClass() {
+        return (date) => {
+            this.releaseDates.map(dt => new Date(dt))
+                .some(d => d.getDate() === date.getDate()
+                && d.getMonth() === date.getMonth()
+                && d.getFullYear() === date.getFullYear());
+            return this.releaseDates ? '.has-releases' : '';
+        };
     }
 };
 CalendarComponent.ctorParameters = () => [
@@ -1079,7 +1098,7 @@ const getIsAuth = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelecto
 /*!*************************************************!*\
   !*** ./src/app/store/reducers/posts.reducer.ts ***!
   \*************************************************/
-/*! exports provided: initialState, reducer, getposts, getpost, isLoadingpost, getTotalposts */
+/*! exports provided: initialState, reducer, getposts, getpost, isLoadingpost, getTotalposts, getSongsReleaseDates */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1090,6 +1109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getpost", function() { return getpost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isLoadingpost", function() { return isLoadingpost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTotalposts", function() { return getTotalposts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSongsReleaseDates", function() { return getSongsReleaseDates; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/posts.actions */ "./src/app/store/actions/posts.actions.ts");
@@ -1105,15 +1125,24 @@ const initialState = {
     error: null,
     loading: false
 };
-const postReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["getPostsSuccess"], (state, { payload }) => (Object.assign({}, state, { posts: payload.posts, totalPosts: payload.postsCount }))), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_3__["logout"], () => initialState));
+const postReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["getPostsSuccess"], (state, { payload }) => (Object.assign({}, state, { posts: payload.posts, totalPosts: payload.maxPosts }))), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_3__["logout"], () => initialState));
 function reducer(state, action) {
     return postReducer(state, action);
 }
 const postState = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createFeatureSelector"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["featureKey"]);
-const getposts = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, state => state.posts);
+const getposts = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, (state) => state.posts);
 const getpost = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, state => state.post);
 const isLoadingpost = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, state => state.loading);
 const getTotalposts = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, state => state.totalPosts);
+const getSongsReleaseDates = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(getposts, state => {
+    const arr = [];
+    if (state) {
+        state.forEach(el => {
+            arr.push(el.release_date);
+        });
+    }
+    return arr;
+});
 
 
 /***/ }),

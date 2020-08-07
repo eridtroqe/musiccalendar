@@ -83,7 +83,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-header></app-header>\n<mat-card class=\"mat-elevation-z4\" >\n  <mat-calendar \n  [selected]=\"selectedDate\" \n  (selectedChange)=\"onSelect($event)\">\n  </mat-calendar>\n</mat-card>\n  <p class=\"cal_date\">{{DayAndDate}}, {{year}}</p>\n";
+    __webpack_exports__["default"] = "<app-header></app-header>\n<mat-card class=\"mat-elevation-z4\" >\n  <mat-calendar \n  [selected]=\"selectedDate\"\n  [dateClass]=\"getClass()\"\n  (selectedChange)=\"onSelect($event)\">\n  </mat-calendar>\n</mat-card>\n  <p class=\"cal_date\">{{DayAndDate}}, {{year}}</p>\n";
     /***/
   },
 
@@ -1239,7 +1239,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "mat-card {\n  width: 25rem;\n  margin: 2rem auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FsZW5kYXIvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcY2FsZW5kYXJcXGNhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jYWxlbmRhci9jYWxlbmRhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLFlBQUE7RUFDQSxpQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvY2FsZW5kYXIvY2FsZW5kYXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxubWF0LWNhcmR7XHJcbiAgICB3aWR0aDogMjVyZW07XHJcbiAgICBtYXJnaW46IDJyZW0gYXV0bztcclxufSIsIm1hdC1jYXJkIHtcbiAgd2lkdGg6IDI1cmVtO1xuICBtYXJnaW46IDJyZW0gYXV0bztcbn0iXX0= */";
+    __webpack_exports__["default"] = "mat-card {\n  width: 25rem;\n  margin: 2rem auto;\n}\n\n.has-releases {\n  background-color: green;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FsZW5kYXIvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcY2FsZW5kYXJcXGNhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jYWxlbmRhci9jYWxlbmRhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLFlBQUE7RUFDQSxpQkFBQTtBQ0FKOztBREdBO0VBQ0ksdUJBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL2NhbGVuZGFyL2NhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbm1hdC1jYXJke1xyXG4gICAgd2lkdGg6IDI1cmVtO1xyXG4gICAgbWFyZ2luOiAycmVtIGF1dG87XHJcbn1cclxuXHJcbi5oYXMtcmVsZWFzZXN7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcclxufSIsIm1hdC1jYXJkIHtcbiAgd2lkdGg6IDI1cmVtO1xuICBtYXJnaW46IDJyZW0gYXV0bztcbn1cblxuLmhhcy1yZWxlYXNlcyB7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xufSJdfQ== */";
     /***/
   },
 
@@ -1286,6 +1286,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../store/actions/posts.actions */
     "./src/app/store/actions/posts.actions.ts");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../store/reducers/posts.reducer */
+    "./src/app/store/reducers/posts.reducer.ts");
 
     var CalendarComponent = /*#__PURE__*/function () {
       function CalendarComponent(store) {
@@ -1297,13 +1309,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.startAt = new Date('2019/09/11');
         this.minDate = new Date('2019/09/14');
         this.maxDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
+        this.releaseDates = [];
+        this.subscriptions = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
         this.onSelect(this.selectedDate);
+        this.store.dispatch(Object(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__["getPostsRequest"])());
       }
 
       _createClass(CalendarComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          this.store.dispatch(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__["getPostsRequest"]);
+          var _this2 = this;
+
+          this.subscriptions.add(this.store.select(_store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_5__["getSongsReleaseDates"]).subscribe(function (dates) {
+            return _this2.releaseDates = dates;
+          }));
+        }
+      }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          this.subscriptions.unsubscribe();
         }
       }, {
         key: "onSelect",
@@ -1314,6 +1338,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var dateValue = dateString.split(' ');
           this.year = dateValue[3];
           this.DayAndDate = dateValue[0] + ',' + ' ' + dateValue[1] + ' ' + dateValue[2];
+        }
+      }, {
+        key: "getClass",
+        value: function getClass() {
+          var _this3 = this;
+
+          return function (date) {
+            _this3.releaseDates.map(function (dt) {
+              return new Date(dt);
+            }).some(function (d) {
+              return d.getDate() === date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear();
+            });
+
+            return _this3.releaseDates ? '.has-releases' : '';
+          };
         }
       }]);
 
@@ -1917,7 +1956,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./node_modules/rxjs/_esm2015/index.js");
 
     var AuthEffects = function AuthEffects(actions$, router, auth) {
-      var _this2 = this;
+      var _this4 = this;
 
       _classCallCheck(this, AuthEffects);
 
@@ -1925,10 +1964,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.router = router;
       this.auth = auth;
       this.LoginRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-        return _this2.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (action) {
+        return _this4.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (action) {
           return action.payload;
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(function (data) {
-          return _this2.auth.login(data.email, data.password).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+          return _this4.auth.login(data.email, data.password).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
             return Object(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"])({
               token: res.token,
               email: res.email
@@ -1941,20 +1980,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }));
       });
       this.LoginSuccess$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-        return _this2.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (user) {
+        return _this4.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (user) {
           localStorage.setItem('token', user.token);
           localStorage.setItem('user_email', user.email);
 
-          _this2.router.navigate(['calendar']);
+          _this4.router.navigate(['calendar']);
         }));
       }, {
         dispatch: false
       });
       this.Logout$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-        return _this2.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["logout"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
+        return _this4.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["logout"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
           localStorage.removeItem('token');
 
-          _this2.router.navigate(['']);
+          _this4.router.navigate(['']);
         }));
       }, {
         dispatch: false
@@ -2044,7 +2083,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./src/app/store/actions/posts.actions.ts");
 
     var PostsEffects = function PostsEffects(actions$, store, postService) {
-      var _this3 = this;
+      var _this5 = this;
 
       _classCallCheck(this, PostsEffects);
 
@@ -2052,8 +2091,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.store = store;
       this.postService = postService;
       this.GetPostsRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-        return _this3.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (action) {
-          return _this3.postService.getPosts().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
+        return _this5.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (action) {
+          return _this5.postService.getPosts().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
             return Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsSuccess"])({
               payload: data
             });
@@ -2065,13 +2104,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }));
       });
       this.DeletePropertyRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-        return _this3.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (action) {
+        return _this5.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (action) {
           return action.id;
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (_ref) {
           var _ref2 = _slicedToArray(_ref, 1),
               id = _ref2[0];
 
-          return _this3.postService.deletePost(id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function () {
+          return _this5.postService.deletePost(id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function () {
             return [Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostSuccess"])(), Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsRequest"])()];
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostFailure"])({
@@ -2196,7 +2235,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     !*** ./src/app/store/reducers/posts.reducer.ts ***!
     \*************************************************/
 
-  /*! exports provided: initialState, reducer, getposts, getpost, isLoadingpost, getTotalposts */
+  /*! exports provided: initialState, reducer, getposts, getpost, isLoadingpost, getTotalposts, getSongsReleaseDates */
 
   /***/
   function srcAppStoreReducersPostsReducerTs(module, __webpack_exports__, __webpack_require__) {
@@ -2239,6 +2278,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     __webpack_require__.d(__webpack_exports__, "getTotalposts", function () {
       return getTotalposts;
     });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "getSongsReleaseDates", function () {
+      return getSongsReleaseDates;
+    });
     /* harmony import */
 
 
@@ -2275,7 +2320,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var payload = _ref5.payload;
       return Object.assign({}, state, {
         posts: payload.posts,
-        totalPosts: payload.postsCount
+        totalPosts: payload.maxPosts
       });
     }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_3__["logout"], function () {
       return initialState;
@@ -2297,6 +2342,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
     var getTotalposts = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, function (state) {
       return state.totalPosts;
+    });
+    var getSongsReleaseDates = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(getposts, function (state) {
+      var arr = [];
+
+      if (state) {
+        state.forEach(function (el) {
+          arr.push(el.release_date);
+        });
+      }
+
+      return arr;
     });
     /***/
   },
