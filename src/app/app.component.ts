@@ -5,12 +5,14 @@ import { AppState } from './store/app.state';
 import { EndpointService } from './endpoint/endpoint.service';
 import { getPostsRequest } from './store/actions/posts.actions';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
 
   constructor(private authService: EndpointService,
               private store: Store<AppState>) {}

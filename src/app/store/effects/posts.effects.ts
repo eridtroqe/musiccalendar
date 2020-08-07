@@ -14,6 +14,7 @@ export class PostsEffects {
 
     constructor(private actions$: Actions,
                 private store: Store<AppState>,
+                private router: Router,
                 private postService: EndpointService) { }
 
 
@@ -35,18 +36,23 @@ export class PostsEffects {
 
 
 
-    DeletePropertyRequest$ = createEffect(() => {
+    DeletePostRequest$ = createEffect(() => {
         return this.actions$.pipe(
                 ofType(deletePostRequest),
                 map(action => action.id),
-                mergeMap(([id]) =>
+                mergeMap((id) =>
                     this.postService.deletePost(id).pipe(
-                        switchMap(() => [deletePostSuccess(),
-                                          getPostsRequest()
-                                          ]),
+                        switchMap(() => [deletePostSuccess()]),
                         catchError(error => of(deletePostFailure({error}))))
                     ),
         );
     });
 
+    DeletePostSuccess$ = createEffect(() => {
+        return this.actions$.pipe(
+                ofType(deletePostSuccess),
+                map(() => {
+                    return getPostsRequest();
+                }));
+    });
 }

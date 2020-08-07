@@ -6,3 +6,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #ffd740;
     border-radius: 50%;
 }
+
+.background{
+background: -webkit-repeating-linear-gradient(-45deg, #673ab7 0, #8058c7 30%);
+background: -moz-repeating-linear-gradient(-45deg, #673ab7 0, #8058c7 30%);
+background: -o-repeating-linear-gradient(-45deg, #673ab7 0, #8058c7 30%);
+background: -ms-repeating-linear-gradient(-45deg, #673ab7 0, #8058c7 30%);
+background: repeating-linear-gradient(-45deg, #7548c2 7%, #916ad3 30%);
+}

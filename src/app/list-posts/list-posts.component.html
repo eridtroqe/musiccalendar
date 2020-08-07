@@ -1,8 +1,26 @@
 <h1 mat-dialog-title>Songs released</h1>
 <div mat-dialog-content>
-  <p class="mat-body-1">{{ data | json }}</p>
+  <div cdkDropList class="drop-list"  (cdkDropListDropped)="drop($event)" #drag >  
+    <div class="list drop-block" *ngFor="let song of data, index as i" cdkDrag [cdkDragDisabled]="disable()">
+      <mat-card class="card">
+        <div>
+          {{ i }} / {{ song.order }}
+        <mat-card-title>{{ song.title }}</mat-card-title>
+        <mat-card-subtitle>
+          <span *ngFor="let artist of song.artist" class="artist">{{ artist }}</span>
+        </mat-card-subtitle>
+        <mat-card-content>{{ song.album }} </mat-card-content>
+      </div>
+        <button mat-icon-button color="warn" (click)="deletePost(song._id)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </mat-card>
+    </div>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Save</button>
-  <button mat-button mat-dialog-close>Cancel</button>
+<div mat-dialog-actions class="action-dialog-buttons">
+  <div>
+  <button mat-raised-button mat-dialog-close color="primary">Save</button>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+</div>
 </div>

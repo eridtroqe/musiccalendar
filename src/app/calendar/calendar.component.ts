@@ -17,14 +17,15 @@ import { ListPostsComponent } from '../list-posts/list-posts.component';
 export class CalendarComponent implements OnInit, OnDestroy {
 
   releaseDates = [];
-  releaseDates$: Observable<Array<Date>>;
   posts: Array<Post>;
+  isLoading: boolean;
 
-  subscriptions = new Subscription();
+  isLoadingSub: Subscription;
 
   constructor(private store: Store<AppState>,
               private activatedRoute: ActivatedRoute,
               private dialog: MatDialog) {
+                this.isLoadingSub = this.store.select(isLoadingpost).subscribe(val => this.isLoading = val);
   }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this.isLoadingSub.unsubscribe();
   }
 
   onSelect(event) {
@@ -51,7 +52,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
       }
     });
     if (hasReleases && postsOnDate.length > 0) {
-      this.dialog.open(ListPostsComponent, { data: postsOnDate });
+      this.dialog.open(ListPostsComponent, { data: postsOnDate, height: 'fit-content' });
     }
   }
 
@@ -63,10 +64,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   hasReleases(date: Date): boolean {
-    return this.releaseDates.map(dt => new Date(dt))
-      .some(d => d.getDate() === date.getDate()
-        && d.getMonth() === date.getMonth()
-        && d.getFullYear() === date.getFullYear());
+    return this.releaseDates.some(d => this.areSameDate(d, date));
   }
 
   areSameDate(d1, d2): boolean {

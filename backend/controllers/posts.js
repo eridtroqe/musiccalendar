@@ -50,3 +50,25 @@ exports.getPosts = (req, res, next) => {
       });
     });
 }
+
+exports.deletePost = (req, res, next) => {
+
+  Post.findOne({ _id: req.params.id }).then(
+    post => {
+      return Post.deleteOne({
+        _id: req.params.id,
+      }).then((result) => {
+        if (result.n > 0) {
+          res.status(200).json({ message: "Deleted successful!" });
+        } else {
+          res.status(401).json({ message: "Not authorized!" });
+        }
+      })
+        .catch(error => {
+          res.status(500).json({
+            message: "Deleting  failed!"
+          });
+        });
+    }
+  ).catch(error => console.log('Error finding post'));
+}

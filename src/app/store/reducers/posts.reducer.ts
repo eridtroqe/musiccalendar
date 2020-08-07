@@ -21,11 +21,13 @@ export const initialState: State = {
 
 const postReducer = createReducer(
     initialState,
+    on(postsActions.getPostsRequest, (state: State) => ({...state, loading: true })),
     on(postsActions.getPostsSuccess, (state: State, { payload }) => (
         {
             ...state,
             posts: payload.posts,
-            totalPosts: payload.maxPosts
+            totalPosts: payload.maxPosts,
+            loading: false
         }
     )),
     on(logout, () => initialState),
