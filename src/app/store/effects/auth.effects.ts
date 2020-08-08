@@ -13,7 +13,7 @@ export class AuthEffects {
 
     constructor(private actions$: Actions,
                 private router: Router,
-                private auth: EndpointService){}
+                private auth: EndpointService) {}
 
  LoginRequest$ = createEffect(() => {
      return this.actions$.pipe(
@@ -21,8 +21,7 @@ export class AuthEffects {
              map(action => action.payload),
              mergeMap((data) =>
                  this.auth.login(data.email, data.password).pipe(
-    mergeMap(res =>[ loginSuccess({token: res.token, email: res.email }),
-                   ]),
+    map(res => loginSuccess({token: res.token, email: res.email })),
                      catchError(error => of(loginFailure({ error }))))
                  ),
      );

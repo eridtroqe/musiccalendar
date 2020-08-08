@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 exports.userLogin = (req, res, next) => {
     let fetchedUser;
+    console.log('req ', req.body);
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {

@@ -25,7 +25,10 @@ export class CalendarComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>,
               private activatedRoute: ActivatedRoute,
               private dialog: MatDialog) {
+                
                 this.isLoadingSub = this.store.select(isLoadingpost).subscribe(val => this.isLoading = val);
+                this.store.dispatch(getPostsRequest());
+
   }
 
   ngOnInit() {
@@ -52,7 +55,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
       }
     });
     if (hasReleases && postsOnDate.length > 0) {
-      this.posts.sort((a,b) => a.order -b.order);
+      this.posts.sort((a, b) => a.order - b.order);
       this.dialog.open(ListPostsComponent, { data: postsOnDate });
     }
   }
@@ -72,7 +75,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     d1 = new Date(d1);
     return d1.getDate() === d2.getDate()
       && d1.getMonth() === d2.getMonth()
-      && d1.getFullYear() === d2.getFullYear()
+      && d1.getFullYear() === d2.getFullYear();
   }
 
 }

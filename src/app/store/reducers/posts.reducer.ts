@@ -25,7 +25,7 @@ const postReducer = createReducer(
     on(postsActions.getPostsSuccess, (state: State, { payload }) => (
         {
             ...state,
-            posts: payload.posts.sort((a,b) => a.order - b.order),
+            posts: payload.posts.sort((a, b) => a.order - b.order),
             totalPosts: payload.maxPosts,
             loading: false
         }

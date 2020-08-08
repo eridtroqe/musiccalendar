@@ -1,14 +1,31 @@
 # Music
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
+Repository of the project is (https://github.com/eridtroqe/musiccalendar)
 
-## Development server
+## Running project
+1- Run `npm install` to install all dependecies
+2- Run `ng build` to build the project. The bundle will be stored on `backend/music` folder.
+3- Open a terminal and run `npm run start:server` to run the BE on port `http://localhost:3000`.
+4- Opene another terminal and run `npm start` to run the FE on port `http://localhost:4200`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Project features
+It has a small real BE with Node.js for managing data.
+User logs in with username: `test@gmail.com` and password: `123456`.
+After login the page redirects to the calendar page.
+The calendar component have highlighted the days in which has been realised songs.
+You can't click on the days which don't have released songs on that day.
+If we click on one of the highlighted days it will open a modal with the list of songs released on that day.
+The user can reorder the list on the modal by drag and drop and a button will show to save the changes.
+If there is one song released there is no sence to reorder so the drag and drop functionality is disabled.
+The user can remove any song from the modal list by clickin on the delete icon.
+The logout functionality also works.
+The project uses NGRX v8 for state management of the application.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## !!! -----   IMPORTANT  ----- !!!
+When the user makes a CRUD action like `delete` or `save the order of list` it hasn't the full functionality
+to rerender the page so a refresh of the page is needed `F5`.
 
 ## Build
 

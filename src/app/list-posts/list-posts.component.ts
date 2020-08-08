@@ -42,7 +42,7 @@ export class ListPostsComponent implements OnInit {
   }
 
   changeOrderValue(data: Array<Post>) {
-    if (!data || data.length <= 0 ) return;
+    if (!data || data.length <= 0 ) { return; }
     for (let i = 0; i < data.length; i++) {
       data[i].order = i;
     }

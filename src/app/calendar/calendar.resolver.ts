@@ -11,6 +11,10 @@ import { getPostsRequest } from '../store/actions/posts.actions';
     providedIn: 'root'
     })
     export class CalendarResolverService implements Resolve<any> {
+
+      // Used a resolver to render component page when data is ready because mat-calendar renders before the data come 
+      // from BE.
+
       constructor(private endpoint: EndpointService, private store: Store<AppState>) { }
       resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         return this.endpoint.getPosts().pipe(

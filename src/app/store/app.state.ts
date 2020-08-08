@@ -10,4 +10,4 @@ export interface AppState {
 export const reducers = {
  auth: authState.reducer,
  posts: postState.reducer
-}
+};

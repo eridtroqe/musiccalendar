@@ -26,7 +26,7 @@ export class PostsEffects {
             mergeMap((action) =>
                 this.postService.getPosts().pipe(
                     map(data => {
-                        return getPostsSuccess({ payload: data })
+                        return getPostsSuccess({ payload: data });
                     }
                     ),
                     catchError(error => of(getPostsFailure({ error }))))
@@ -48,6 +48,7 @@ export class PostsEffects {
     });
 
 
+    
 
     DeletePostRequest$ = createEffect(() => {
         return this.actions$.pipe(

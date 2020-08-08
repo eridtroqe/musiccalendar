@@ -8,8 +8,8 @@ import { CalendarResolverService } from './calendar/calendar.resolver';
 
 const routes: Routes = [
 {path: '', component: LoginComponent},
-{path: 'calendar', 
-component: CalendarComponent, 
+{path: 'calendar',
+component: CalendarComponent,
 canActivate: [AuthGuard],
 resolve: { calendar: CalendarResolverService }}
 ];

@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 ngOnInit() {
 const authToken = this.authService.getToken();
 
-this.store.dispatch(getPostsRequest());
 if (!authToken) {
 this.store.dispatch(authFalse());
 } else {
