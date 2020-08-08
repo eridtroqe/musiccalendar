@@ -52,7 +52,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
       }
     });
     if (hasReleases && postsOnDate.length > 0) {
-      this.dialog.open(ListPostsComponent, { data: postsOnDate, height: 'fit-content' });
+      this.posts.sort((a,b) => a.order -b.order);
+      this.dialog.open(ListPostsComponent, { data: postsOnDate });
     }
   }
 

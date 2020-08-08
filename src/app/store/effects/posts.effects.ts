@@ -6,7 +6,7 @@ import { map, catchError, mergeMap, switchMap, withLatestFrom } from 'rxjs/opera
 import { of } from 'rxjs';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
-import { getPostsRequest, getPostsSuccess, getPostsFailure, deletePostRequest, deletePostSuccess, deletePostFailure } from '../actions/posts.actions';
+import { getPostsRequest, getPostsSuccess, getPostsFailure, deletePostRequest, deletePostSuccess, deletePostFailure, updateOrderRequest, updateOrderSuccess, updateOrderFailure } from '../actions/posts.actions';
 
 
 @Injectable()
@@ -31,6 +31,19 @@ export class PostsEffects {
                     ),
                     catchError(error => of(getPostsFailure({ error }))))
             ),
+        );
+    });
+
+
+    UpdateOrderRequest$ = createEffect(() => {
+        return this.actions$.pipe(
+                ofType(updateOrderRequest),
+                map(action => action.posts),
+                mergeMap((posts) =>
+                    this.postService.updateOrderPost(posts).pipe(
+                        map(data => updateOrderSuccess({payload: data})),
+                        catchError(error => of(updateOrderFailure({ error }))))
+                    ),
         );
     });
 

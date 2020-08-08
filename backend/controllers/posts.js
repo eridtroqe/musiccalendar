@@ -12,8 +12,7 @@ exports.createPost = (req, res, next) => {
   });
 
   post.save().then(createdPost => {
-    console.log('createdPOst ', createdPost);
-    
+
     res.status(201).json({
       message: "Post added succesfully!",
       post: {
@@ -72,3 +71,32 @@ exports.deletePost = (req, res, next) => {
     }
   ).catch(error => console.log('Error finding post'));
 }
+
+exports.updatePosts = (req, res, next) => {
+  let posts = req.body.posts;
+  let postsIds = [];
+  posts.forEach( post => postsIds.push(post._id));
+  console.log('post ids ', postsIds);
+  Post.deleteMany({_id: { $in: postsIds }}, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+
+  posts.forEach(post => 
+  {
+    let newPost = new Post({
+      _id: post.id,
+      artist: post.artist,
+      title: post.title,
+      album: post.album,
+      release_date: post.release_date,
+      order: post.order
+    });
+
+    newPost.save().then(res => res.status(200)).catch(err => res.status(500));
+  }
+  );
+};

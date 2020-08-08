@@ -12,3 +12,7 @@ export const deletePostFailure = createAction(`[${featureKey}] deletePostFailure
 export const getPostsRequest = createAction(`[${featureKey}] getPostsRequest`);
 export const getPostsSuccess = createAction(`[${featureKey}] getPostsSuccess`, props<{ payload: PostsResponse }>());
 export const getPostsFailure = createAction(`[${featureKey}] getPostsFailure`, props<{ error: string }>());
+
+export const updateOrderRequest = createAction(`[${featureKey}] updateOrderRequest`, props<{posts: Array<Post>}>());
+export const updateOrderSuccess = createAction(`[${featureKey}] updateOrderSuccess`, props<{ payload: PostsResponse }>());
+export const updateOrderFailure = createAction(`[${featureKey}] updateOrderFailure`, props<{ error: string }>());

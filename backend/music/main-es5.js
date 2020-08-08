@@ -1,15 +1,3 @@
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -63,7 +51,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n      <main>\n        <router-outlet></router-outlet>\n      </main>";
+    __webpack_exports__["default"] = "\n      <main class=\"background\">\n        <router-outlet></router-outlet>\n      </main>";
     /***/
   },
 
@@ -83,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-header></app-header>\n<mat-card class=\"mat-elevation-z4\" >\n  <mat-calendar \n  [selected]=\"selectedDate\"\n  [dateClass]=\"getClass()\"\n  (selectedChange)=\"onSelect($event)\">\n  </mat-calendar>\n</mat-card>\n  <p class=\"cal_date\">{{DayAndDate}}, {{year}}</p>\n";
+    __webpack_exports__["default"] = "<app-header></app-header>\n<mat-card class=\"mat-elevation-z10\" *ngIf=\"releaseDates && !isLoading\">\n  <mat-calendar \n  [dateClass]=\"getClass()\"\n  (selectedChange)=\"onSelect($event)\">\n  </mat-calendar>\n</mat-card>";
     /***/
   },
 
@@ -108,6 +96,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/list-posts/list-posts.component.html":
+  /*!********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/list-posts/list-posts.component.html ***!
+    \********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppListPostsListPostsComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<h1 mat-dialog-title>Songs released</h1>\n<div mat-dialog-content>\n  <div cdkDropList class=\"drop-list\"  (cdkDropListDropped)=\"drop($event)\" #drag >  \n    <div class=\"list drop-block\" *ngFor=\"let song of data, index as i\" cdkDrag [cdkDragDisabled]=\"disable()\">\n      <mat-card class=\"card\">\n        <div>\n          {{ i }} / {{ song.order }}\n        <mat-card-title>{{ song.title }}</mat-card-title>\n        <mat-card-subtitle>\n          <span *ngFor=\"let artist of song.artist\" class=\"artist\">{{ artist }}</span>\n        </mat-card-subtitle>\n        <mat-card-content>{{ song.album }} </mat-card-content>\n      </div>\n        <button mat-icon-button color=\"warn\" matTooltip=\"Remove\" matTooltipPosition=\"left\"\n                aria-label=\"Remove\" (click)=\"deletePost(song._id)\">\n          <mat-icon>delete_outline</mat-icon>\n        </button>\n      </mat-card>\n    </div>\n  </div>\n</div>\n<div mat-dialog-actions class=\"action-dialog-buttons\">\n  <div>\n  <button mat-raised-button mat-dialog-close color=\"primary\" *ngIf=\"canChangeOrder() && isListReorderd\" (click)=\"saveOrder($event)\">Save</button>\n  <button mat-stroked-button mat-dialog-close>Cancel</button>\n</div>\n</div>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/login/login.component.html":
   /*!**********************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/login/login.component.html ***!
@@ -123,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<mat-spinner *ngIf=\"isLoading\"></mat-spinner>\n<mat-card>\n  <form (submit)=\"onLogin(loginForm)\" #loginForm=\"ngForm\" *ngIf=\"!isLoading\">\n    <mat-form-field>\n      <input matInput name=\"email\" ngModel type=\"email\" placeholder=\"E-Mail\" #emailInput=\"ngModel\" required email>\n      <mat-error *ngIf=\"emailInput.invalid\">Please enter a valid email.</mat-error>\n    </mat-form-field>\n    <mat-form-field>\n      <input type=\"password\" name=\"password\" ngModel matInput placeholder=\"Password\" #passwordInput=\"ngModel\" required>\n      <mat-error *ngIf=\"passwordInput.invalid\">Please enter a valid password.</mat-error>\n    </mat-form-field>\n    <button mat-raised-button color=\"accent\" type=\"submit\" *ngIf=\"!isLoading\">Login</button>\n  </form>\n</mat-card>\n";
+    __webpack_exports__["default"] = "<div class=\"container\">\n<mat-card class=\"login-form mat-elevation-z20\">\n  <mat-spinner *ngIf=\"isLoading\"></mat-spinner>\n  <form (submit)=\"onLogin(loginForm)\" #loginForm=\"ngForm\" *ngIf=\"!isLoading\">\n    <mat-form-field>\n      <input matInput name=\"email\" ngModel type=\"email\" placeholder=\"E-Mail\" #emailInput=\"ngModel\" required email>\n      <mat-error *ngIf=\"emailInput.invalid\">Please enter a valid email.</mat-error>\n    </mat-form-field>\n    <mat-form-field>\n      <input type=\"password\" name=\"password\" ngModel matInput placeholder=\"Password\" #passwordInput=\"ngModel\" required>\n      <mat-error *ngIf=\"passwordInput.invalid\">Please enter a valid password.</mat-error>\n    </mat-form-field>\n    <div class=\"login\">\n    <button mat-raised-button color=\"accent\" type=\"submit\" *ngIf=\"!isLoading\">Login</button>\n  </div>\n  </form>\n</mat-card>\n</div>";
     /***/
   },
 
@@ -768,13 +776,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/material */
     "./node_modules/@angular/material/esm2015/material.js");
+    /* harmony import */
+
+
+    var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/cdk/drag-drop */
+    "./node_modules/@angular/cdk/esm2015/drag-drop.js");
 
     var AngularMaterialModule = function AngularMaterialModule() {
       _classCallCheck(this, AngularMaterialModule);
     };
 
     AngularMaterialModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      exports: [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDatepickerModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatNativeDateModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTooltipModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatProgressSpinnerModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"]]
+      exports: [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDatepickerModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatNativeDateModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTooltipModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatProgressSpinnerModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__["DragDropModule"]]
     })], AngularMaterialModule);
     /***/
   },
@@ -834,6 +848,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _auth_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./auth.guard */
     "./src/app/auth.guard.ts");
+    /* harmony import */
+
+
+    var _calendar_calendar_resolver__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./calendar/calendar.resolver */
+    "./src/app/calendar/calendar.resolver.ts");
 
     var routes = [{
       path: '',
@@ -841,7 +861,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'calendar',
       component: _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_4__["CalendarComponent"],
-      canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_5__["AuthGuard"]]
+      canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_5__["AuthGuard"]],
+      resolve: {
+        calendar: _calendar_calendar_resolver__WEBPACK_IMPORTED_MODULE_6__["CalendarResolverService"]
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -872,7 +895,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */";
+    __webpack_exports__["default"] = "main {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsibWFpbntcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG59IiwibWFpbiB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG59Il19 */";
     /***/
   },
 
@@ -925,6 +948,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./endpoint/endpoint.service */
     "./src/app/endpoint/endpoint.service.ts");
+    /* harmony import */
+
+
+    var _store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./store/actions/posts.actions */
+    "./src/app/store/actions/posts.actions.ts");
 
     var AppComponent = /*#__PURE__*/function () {
       function AppComponent(authService, store) {
@@ -938,6 +967,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           var authToken = this.authService.getToken();
+          this.store.dispatch(Object(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__["getPostsRequest"])());
 
           if (!authToken) {
             this.store.dispatch(Object(_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_2__["authFalse"])());
@@ -1103,19 +1133,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _store_effects_posts_effects__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
     /*! ./store/effects/posts.effects */
     "./src/app/store/effects/posts.effects.ts");
+    /* harmony import */
+
+
+    var _list_posts_list_posts_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    /*! ./list-posts/list-posts.component */
+    "./src/app/list-posts/list-posts.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"], _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_15__["CalendarComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_16__["HeaderComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"], _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_15__["CalendarComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_16__["HeaderComponent"], _list_posts_list_posts_component__WEBPACK_IMPORTED_MODULE_19__["ListPostsComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"], _angular_material_module__WEBPACK_IMPORTED_MODULE_5__["AngularMaterialModule"], _ngrx_store__WEBPACK_IMPORTED_MODULE_10__["StoreModule"].forRoot(_store_app_state__WEBPACK_IMPORTED_MODULE_12__["reducers"], {}), _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__["StoreDevtoolsModule"].instrument({
         maxAge: 25,
         logOnly: src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].production
       }), _ngrx_effects__WEBPACK_IMPORTED_MODULE_8__["EffectsModule"].forRoot([_store_effects_auth_effects__WEBPACK_IMPORTED_MODULE_11__["AuthEffects"], _store_effects_posts_effects__WEBPACK_IMPORTED_MODULE_18__["PostsEffects"]])],
       providers: [],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
+      entryComponents: [_list_posts_list_posts_component__WEBPACK_IMPORTED_MODULE_19__["ListPostsComponent"]]
     })], AppModule);
     /***/
   },
@@ -1239,7 +1276,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "mat-card {\n  width: 25rem;\n  margin: 2rem auto;\n}\n\n.has-releases {\n  background-color: green;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FsZW5kYXIvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcY2FsZW5kYXJcXGNhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jYWxlbmRhci9jYWxlbmRhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLFlBQUE7RUFDQSxpQkFBQTtBQ0FKOztBREdBO0VBQ0ksdUJBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL2NhbGVuZGFyL2NhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbm1hdC1jYXJke1xyXG4gICAgd2lkdGg6IDI1cmVtO1xyXG4gICAgbWFyZ2luOiAycmVtIGF1dG87XHJcbn1cclxuXHJcbi5oYXMtcmVsZWFzZXN7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcclxufSIsIm1hdC1jYXJkIHtcbiAgd2lkdGg6IDI1cmVtO1xuICBtYXJnaW46IDJyZW0gYXV0bztcbn1cblxuLmhhcy1yZWxlYXNlcyB7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xufSJdfQ== */";
+    __webpack_exports__["default"] = "mat-card {\n  width: 25rem;\n  margin: 2rem auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FsZW5kYXIvQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcY2FsZW5kYXJcXGNhbGVuZGFyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jYWxlbmRhci9jYWxlbmRhci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLFlBQUE7RUFDQSxpQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvY2FsZW5kYXIvY2FsZW5kYXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxubWF0LWNhcmR7XHJcbiAgICB3aWR0aDogMjVyZW07XHJcbiAgICBtYXJnaW46IDJyZW0gYXV0bztcclxufVxyXG4iLCJtYXQtY2FyZCB7XG4gIHdpZHRoOiAyNXJlbTtcbiAgbWFyZ2luOiAycmVtIGF1dG87XG59Il19 */";
     /***/
   },
 
@@ -1283,76 +1320,109 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ../store/actions/posts.actions */
-    "./src/app/store/actions/posts.actions.ts");
+    var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/material */
+    "./node_modules/@angular/material/esm2015/material.js");
     /* harmony import */
 
 
-    var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js");
-    /* harmony import */
-
-
-    var _store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../store/reducers/posts.reducer */
     "./src/app/store/reducers/posts.reducer.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _list_posts_list_posts_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../list-posts/list-posts.component */
+    "./src/app/list-posts/list-posts.component.ts");
 
     var CalendarComponent = /*#__PURE__*/function () {
-      function CalendarComponent(store) {
+      function CalendarComponent(store, activatedRoute, dialog) {
+        var _this2 = this;
+
         _classCallCheck(this, CalendarComponent);
 
-        this.store = store; // title = 'ng-calendar-demo';
-
-        this.selectedDate = new Date();
-        this.startAt = new Date('2019/09/11');
-        this.minDate = new Date('2019/09/14');
-        this.maxDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
+        this.store = store;
+        this.activatedRoute = activatedRoute;
+        this.dialog = dialog;
         this.releaseDates = [];
-        this.subscriptions = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subscription"]();
-        this.onSelect(this.selectedDate);
-        this.store.dispatch(Object(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__["getPostsRequest"])());
+        this.isLoadingSub = this.store.select(_store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_4__["isLoadingpost"]).subscribe(function (val) {
+          return _this2.isLoading = val;
+        });
       }
 
       _createClass(CalendarComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this2 = this;
+          var _this3 = this;
 
-          this.subscriptions.add(this.store.select(_store_reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_5__["getSongsReleaseDates"]).subscribe(function (dates) {
-            return _this2.releaseDates = dates;
-          }));
+          this.activatedRoute.data.subscribe(function (data) {
+            _this3.posts = data.calendar.posts;
+            data.calendar.posts.forEach(function (el) {
+              _this3.releaseDates.push(el.release_date);
+            });
+          });
         }
       }, {
         key: "ngOnDestroy",
         value: function ngOnDestroy() {
-          this.subscriptions.unsubscribe();
+          this.isLoadingSub.unsubscribe();
         }
       }, {
         key: "onSelect",
         value: function onSelect(event) {
-          console.log(event);
-          this.selectedDate = event;
-          var dateString = event.toDateString();
-          var dateValue = dateString.split(' ');
-          this.year = dateValue[3];
-          this.DayAndDate = dateValue[0] + ',' + ' ' + dateValue[1] + ' ' + dateValue[2];
+          var _this4 = this;
+
+          var hasReleases = this.hasReleases(event);
+          var postsOnDate = [];
+          this.posts.forEach(function (post) {
+            var areSameDate = _this4.areSameDate(post.release_date, event);
+
+            if (areSameDate) {
+              postsOnDate.push(post);
+            }
+          });
+
+          if (hasReleases && postsOnDate.length > 0) {
+            this.posts.sort(function (a, b) {
+              return a.order - b.order;
+            });
+            this.dialog.open(_list_posts_list_posts_component__WEBPACK_IMPORTED_MODULE_6__["ListPostsComponent"], {
+              data: postsOnDate
+            });
+          }
         }
       }, {
         key: "getClass",
         value: function getClass() {
-          var _this3 = this;
+          var _this5 = this;
 
           return function (date) {
-            _this3.releaseDates.map(function (dt) {
-              return new Date(dt);
-            }).some(function (d) {
-              return d.getDate() === date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear();
-            });
+            var highlight = _this5.hasReleases(date);
 
-            return _this3.releaseDates ? '.has-releases' : '';
+            return highlight ? 'has-releases' : '';
           };
+        }
+      }, {
+        key: "hasReleases",
+        value: function hasReleases(date) {
+          var _this6 = this;
+
+          return this.releaseDates.some(function (d) {
+            return _this6.areSameDate(d, date);
+          });
+        }
+      }, {
+        key: "areSameDate",
+        value: function areSameDate(d1, d2) {
+          d1 = new Date(d1);
+          return d1.getDate() === d2.getDate() && d1.getMonth() === d2.getMonth() && d1.getFullYear() === d2.getFullYear();
         }
       }]);
 
@@ -1362,6 +1432,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     CalendarComponent.ctorParameters = function () {
       return [{
         type: _ngrx_store__WEBPACK_IMPORTED_MODULE_2__["Store"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]
+      }, {
+        type: _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]
       }];
     };
 
@@ -1374,6 +1448,96 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./calendar.component.scss */
       "./src/app/calendar/calendar.component.scss"))["default"]]
     })], CalendarComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/calendar/calendar.resolver.ts":
+  /*!***********************************************!*\
+    !*** ./src/app/calendar/calendar.resolver.ts ***!
+    \***********************************************/
+
+  /*! exports provided: CalendarResolverService */
+
+  /***/
+  function srcAppCalendarCalendarResolverTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CalendarResolverService", function () {
+      return CalendarResolverService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../endpoint/endpoint.service */
+    "./src/app/endpoint/endpoint.service.ts");
+    /* harmony import */
+
+
+    var _ngrx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ngrx/store */
+    "./node_modules/@ngrx/store/fesm2015/store.js");
+
+    var CalendarResolverService = /*#__PURE__*/function () {
+      function CalendarResolverService(endpoint, store) {
+        _classCallCheck(this, CalendarResolverService);
+
+        this.endpoint = endpoint;
+        this.store = store;
+      }
+
+      _createClass(CalendarResolverService, [{
+        key: "resolve",
+        value: function resolve(route, state) {
+          return this.endpoint.getPosts().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (error) {
+            return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"];
+          }));
+        }
+      }]);
+
+      return CalendarResolverService;
+    }();
+
+    CalendarResolverService.ctorParameters = function () {
+      return [{
+        type: _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_4__["EndpointService"]
+      }, {
+        type: _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["Store"]
+      }];
+    };
+
+    CalendarResolverService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], CalendarResolverService);
     /***/
   },
 
@@ -1454,6 +1618,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function deletePost(id) {
           return this.http["delete"](BACKEND_URL + '/posts/' + id);
         }
+      }, {
+        key: "updateOrderPost",
+        value: function updateOrderPost(posts) {
+          return this.http.put(BACKEND_URL + '/posts/update', {
+            posts: posts
+          });
+        }
       }]);
 
       return EndpointService;
@@ -1487,7 +1658,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ":host {\n  display: block;\n  width: 100%;\n}\n\nbutton {\n  margin-right: 1.5rem;\n}\n\nh1 {\n  margin-right: 1rem;\n}\n\n.fill-space {\n  flex: 1 1 auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVhZGVyL0M6XFxVc2Vyc1xcdXNlclxcRGVza3RvcFxcSW50ZWx5Y2FyZVxcbXVzaWMvc3JjXFxhcHBcXGhlYWRlclxcaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksY0FBQTtFQUNBLFdBQUE7QUNDSjs7QURFQTtFQUNHLG9CQUFBO0FDQ0g7O0FERUE7RUFDSSxrQkFBQTtBQ0NKOztBREVBO0VBQ0ksY0FBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0e1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgbWFyZ2luLXJpZ2h0OiAxLjVyZW07XHJcbn1cclxuXHJcbmgxe1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xyXG59XHJcblxyXG4uZmlsbC1zcGFjZXtcclxuICAgIGZsZXg6IDEgMSBhdXRvO1xyXG59IiwiOmhvc3Qge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmJ1dHRvbiB7XG4gIG1hcmdpbi1yaWdodDogMS41cmVtO1xufVxuXG5oMSB7XG4gIG1hcmdpbi1yaWdodDogMXJlbTtcbn1cblxuLmZpbGwtc3BhY2Uge1xuICBmbGV4OiAxIDEgYXV0bztcbn0iXX0= */";
+    __webpack_exports__["default"] = ":host {\n  display: block;\n  width: 100%;\n}\n\nbutton {\n  margin-right: 1.5rem;\n}\n\nh1 {\n  margin-right: 1rem;\n}\n\n.fill-space {\n  flex: 1 1 auto;\n}\n\n::ng-deep .mat-tooltip {\n  background: #ffd740 !important;\n  color: black !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVhZGVyL0M6XFxVc2Vyc1xcdXNlclxcRGVza3RvcFxcSW50ZWx5Y2FyZVxcbXVzaWMvc3JjXFxhcHBcXGhlYWRlclxcaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksY0FBQTtFQUNBLFdBQUE7QUNDSjs7QURFQTtFQUNHLG9CQUFBO0FDQ0g7O0FERUE7RUFDSSxrQkFBQTtBQ0NKOztBREVBO0VBQ0ksY0FBQTtBQ0NKOztBREVBO0VBQ0ksOEJBQUE7RUFDQSx1QkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0e1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgbWFyZ2luLXJpZ2h0OiAxLjVyZW07XHJcbn1cclxuXHJcbmgxe1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xyXG59XHJcblxyXG4uZmlsbC1zcGFjZXtcclxuICAgIGZsZXg6IDEgMSBhdXRvO1xyXG59XHJcblxyXG46Om5nLWRlZXAgLm1hdC10b29sdGlwIHtcclxuICAgIGJhY2tncm91bmQ6ICNmZmQ3NDAgIWltcG9ydGFudDtcclxuICAgIGNvbG9yOiBibGFjayAhaW1wb3J0YW50O1xyXG59IiwiOmhvc3Qge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmJ1dHRvbiB7XG4gIG1hcmdpbi1yaWdodDogMS41cmVtO1xufVxuXG5oMSB7XG4gIG1hcmdpbi1yaWdodDogMXJlbTtcbn1cblxuLmZpbGwtc3BhY2Uge1xuICBmbGV4OiAxIDEgYXV0bztcbn1cblxuOjpuZy1kZWVwIC5tYXQtdG9vbHRpcCB7XG4gIGJhY2tncm91bmQ6ICNmZmQ3NDAgIWltcG9ydGFudDtcbiAgY29sb3I6IGJsYWNrICFpbXBvcnRhbnQ7XG59Il19 */";
     /***/
   },
 
@@ -1574,6 +1745,178 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/list-posts/list-posts.component.scss":
+  /*!******************************************************!*\
+    !*** ./src/app/list-posts/list-posts.component.scss ***!
+    \******************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppListPostsListPostsComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ":host {\n  display: block;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n}\n\n.artist {\n  margin-right: 0.5rem;\n}\n\n.card {\n  width: 40rem;\n  display: flex;\n  justify-content: space-between;\n}\n\n.list {\n  margin: 0.5rem 0;\n}\n\n.action-dialog-buttons {\n  float: right;\n}\n\n.cdk-drag-preview {\n  box-sizing: border-box;\n  border-radius: 4px;\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n}\n\n.cdk-drag-placeholder {\n  opacity: 0;\n}\n\n.cdk-drag-animating {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n\n.drop-list.cdk-drop-list-dragging .drop-block:not(.cdk-drag-placeholder) {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGlzdC1wb3N0cy9DOlxcVXNlcnNcXHVzZXJcXERlc2t0b3BcXEludGVseWNhcmVcXG11c2ljL3NyY1xcYXBwXFxsaXN0LXBvc3RzXFxsaXN0LXBvc3RzLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9saXN0LXBvc3RzL2xpc3QtcG9zdHMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0VBQ0EsMkJBQUE7RUFBQSx3QkFBQTtFQUFBLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxvQkFBQTtBQ0NKOztBREVBO0VBQ0ksWUFBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtBQ0NKOztBREVBO0VBQ0ksZ0JBQUE7QUNDSjs7QURFQTtFQUNFLFlBQUE7QUNDRjs7QURDQTtFQUNJLHNCQUFBO0VBQ0Esa0JBQUE7RUFDQSxxSEFBQTtBQ0VKOztBREdFO0VBQ0UsVUFBQTtBQ0FKOztBREdFO0VBQ0Usc0RBQUE7QUNBSjs7QURHRTtFQUNFLHNEQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC9saXN0LXBvc3RzL2xpc3QtcG9zdHMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgaGVpZ2h0OiBmaXQtY29udGVudDtcclxufVxyXG5cclxuLmFydGlzdHtcclxuICAgIG1hcmdpbi1yaWdodDogLjVyZW07XHJcbn1cclxuXHJcbi5jYXJke1xyXG4gICAgd2lkdGg6IDQwcmVtO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICAgIFxyXG59XHJcbi5saXN0e1xyXG4gICAgbWFyZ2luOiAuNXJlbSAwO1xyXG59XHJcblxyXG4uYWN0aW9uLWRpYWxvZy1idXR0b25ze1xyXG4gIGZsb2F0OiByaWdodDtcclxufVxyXG4uY2RrLWRyYWctcHJldmlldyB7XHJcbiAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xyXG4gICAgYm94LXNoYWRvdzogMCA1cHggNXB4IC0zcHggcmdiYSgwLCAwLCAwLCAwLjIpLFxyXG4gICAgICAgICAgICAgICAgMCA4cHggMTBweCAxcHggcmdiYSgwLCAwLCAwLCAwLjE0KSxcclxuICAgICAgICAgICAgICAgIDAgM3B4IDE0cHggMnB4IHJnYmEoMCwgMCwgMCwgMC4xMik7XHJcbiAgfVxyXG4gIFxyXG4gIC5jZGstZHJhZy1wbGFjZWhvbGRlciB7XHJcbiAgICBvcGFjaXR5OiAwO1xyXG4gIH1cclxuICBcclxuICAuY2RrLWRyYWctYW5pbWF0aW5nIHtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAyNTBtcyBjdWJpYy1iZXppZXIoMCwgMCwgMC4yLCAxKTtcclxuICB9XHJcblxyXG4gIC5kcm9wLWxpc3QuY2RrLWRyb3AtbGlzdC1kcmFnZ2luZyAuZHJvcC1ibG9jazpub3QoLmNkay1kcmFnLXBsYWNlaG9sZGVyKSB7XHJcbiAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMjUwbXMgY3ViaWMtYmV6aWVyKDAsIDAsIDAuMiwgMSk7XHJcbiAgfSIsIjpob3N0IHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIGhlaWdodDogZml0LWNvbnRlbnQ7XG59XG5cbi5hcnRpc3Qge1xuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcbn1cblxuLmNhcmQge1xuICB3aWR0aDogNDByZW07XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbn1cblxuLmxpc3Qge1xuICBtYXJnaW46IDAuNXJlbSAwO1xufVxuXG4uYWN0aW9uLWRpYWxvZy1idXR0b25zIHtcbiAgZmxvYXQ6IHJpZ2h0O1xufVxuXG4uY2RrLWRyYWctcHJldmlldyB7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgYm94LXNoYWRvdzogMCA1cHggNXB4IC0zcHggcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDhweCAxMHB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMTQpLCAwIDNweCAxNHB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMTIpO1xufVxuXG4uY2RrLWRyYWctcGxhY2Vob2xkZXIge1xuICBvcGFjaXR5OiAwO1xufVxuXG4uY2RrLWRyYWctYW5pbWF0aW5nIHtcbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIDI1MG1zIGN1YmljLWJlemllcigwLCAwLCAwLjIsIDEpO1xufVxuXG4uZHJvcC1saXN0LmNkay1kcm9wLWxpc3QtZHJhZ2dpbmcgLmRyb3AtYmxvY2s6bm90KC5jZGstZHJhZy1wbGFjZWhvbGRlcikge1xuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMjUwbXMgY3ViaWMtYmV6aWVyKDAsIDAsIDAuMiwgMSk7XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/list-posts/list-posts.component.ts":
+  /*!****************************************************!*\
+    !*** ./src/app/list-posts/list-posts.component.ts ***!
+    \****************************************************/
+
+  /*! exports provided: ListPostsComponent */
+
+  /***/
+  function srcAppListPostsListPostsComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ListPostsComponent", function () {
+      return ListPostsComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/material */
+    "./node_modules/@angular/material/esm2015/material.js");
+    /* harmony import */
+
+
+    var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/cdk/drag-drop */
+    "./node_modules/@angular/cdk/esm2015/drag-drop.js");
+    /* harmony import */
+
+
+    var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ngrx/store */
+    "./node_modules/@ngrx/store/fesm2015/store.js");
+    /* harmony import */
+
+
+    var _store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../store/actions/posts.actions */
+    "./src/app/store/actions/posts.actions.ts");
+
+    var ListPostsComponent = /*#__PURE__*/function () {
+      function ListPostsComponent(data, store, dialog) {
+        _classCallCheck(this, ListPostsComponent);
+
+        this.data = data;
+        this.store = store;
+        this.dialog = dialog;
+        this.isListReorderd = false;
+      }
+
+      _createClass(ListPostsComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "drop",
+        value: function drop(event) {
+          Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__["moveItemInArray"])(this.data, event.previousIndex, event.currentIndex);
+
+          if (event.previousIndex !== event.currentIndex) {
+            this.isListReorderd = true;
+          }
+
+          this.changeOrderValue(this.data);
+        }
+      }, {
+        key: "disable",
+        value: function disable() {
+          return this.data.length === 1 ? true : false;
+        }
+      }, {
+        key: "canChangeOrder",
+        value: function canChangeOrder() {
+          return !this.disable();
+        }
+      }, {
+        key: "changeOrderValue",
+        value: function changeOrderValue(data) {
+          if (!data || data.length <= 0) return;
+
+          for (var i = 0; i < data.length; i++) {
+            data[i].order = i;
+          }
+
+          return data;
+        }
+      }, {
+        key: "deletePost",
+        value: function deletePost(id) {
+          console.log('id ', id);
+
+          if (id) {
+            this.store.dispatch(Object(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__["deletePostRequest"])({
+              id: id
+            }));
+            this.dialog.closeAll();
+          }
+        }
+      }, {
+        key: "saveOrder",
+        value: function saveOrder() {
+          console.log('save order ', this.data);
+          this.store.dispatch(Object(_store_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__["updateOrderRequest"])({
+            posts: this.data
+          }));
+        }
+      }]);
+
+      return ListPostsComponent;
+    }();
+
+    ListPostsComponent.ctorParameters = function () {
+      return [{
+        type: Array,
+        decorators: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+          args: [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]]
+        }]
+      }, {
+        type: _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"]
+      }, {
+        type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]
+      }];
+    };
+
+    ListPostsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-list-posts',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./list-posts.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/list-posts/list-posts.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./list-posts.component.scss */
+      "./src/app/list-posts/list-posts.component.scss"))["default"]]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]))], ListPostsComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/login/login.component.scss":
   /*!********************************************!*\
     !*** ./src/app/login/login.component.scss ***!
@@ -1589,7 +1932,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ":host {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem auto;\n}\n\nmat-form-field {\n  width: 100%;\n}\n\nmat-spinner {\n  margin: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcbG9naW5cXGxvZ2luLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9sb2dpbi9sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0Esa0JBQUE7QUNDSjs7QURHQTtFQUNJLFdBQUE7QUNBSjs7QURHRTtFQUNFLFlBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3R7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgbWFyZ2luOiAxMHJlbSBhdXRvO1xyXG59XHJcblxyXG5cclxubWF0LWZvcm0tZmllbGQge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgfVxyXG4gIFxyXG4gIG1hdC1zcGlubmVyIHtcclxuICAgIG1hcmdpbjogYXV0bztcclxuICB9XHJcbiIsIjpob3N0IHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIG1hcmdpbjogMTByZW0gYXV0bztcbn1cblxubWF0LWZvcm0tZmllbGQge1xuICB3aWR0aDogMTAwJTtcbn1cblxubWF0LXNwaW5uZXIge1xuICBtYXJnaW46IGF1dG87XG59Il19 */";
+    __webpack_exports__["default"] = ".container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n}\n\n.login-form {\n  padding: 2.5rem 3rem;\n}\n\nmat-form-field {\n  width: 100%;\n}\n\nmat-spinner {\n  margin: auto;\n}\n\n.login {\n  display: flex;\n  justify-content: center;\n  margin-top: 1rem;\n}\n\n.login button {\n  padding: 0.2rem 2rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vQzpcXFVzZXJzXFx1c2VyXFxEZXNrdG9wXFxJbnRlbHljYXJlXFxtdXNpYy9zcmNcXGFwcFxcbG9naW5cXGxvZ2luLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9sb2dpbi9sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7QUNBRjs7QURHQTtFQUNFLG9CQUFBO0FDQUY7O0FER0E7RUFDSSxXQUFBO0FDQUo7O0FER0U7RUFDRSxZQUFBO0FDQUo7O0FER0U7RUFDRSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxnQkFBQTtBQ0FKOztBRENJO0VBQ0Usb0JBQUE7QUNDTiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5jb250YWluZXJ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxufVxyXG5cclxuLmxvZ2luLWZvcm17XHJcbiAgcGFkZGluZzogMi41cmVtIDNyZW07XHJcbn1cclxuXHJcbm1hdC1mb3JtLWZpZWxkIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gIH1cclxuICBcclxuICBtYXQtc3Bpbm5lciB7XHJcbiAgICBtYXJnaW46IGF1dG87XHJcbiAgfVxyXG5cclxuICAubG9naW57XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBtYXJnaW4tdG9wOiAxcmVtO1xyXG4gICAgYnV0dG9ue1xyXG4gICAgICBwYWRkaW5nOiAuMnJlbSAycmVtO1xyXG4gICAgfVxyXG4gIH1cclxuIiwiLmNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuXG4ubG9naW4tZm9ybSB7XG4gIHBhZGRpbmc6IDIuNXJlbSAzcmVtO1xufVxuXG5tYXQtZm9ybS1maWVsZCB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG5tYXQtc3Bpbm5lciB7XG4gIG1hcmdpbjogYXV0bztcbn1cblxuLmxvZ2luIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIG1hcmdpbi10b3A6IDFyZW07XG59XG4ubG9naW4gYnV0dG9uIHtcbiAgcGFkZGluZzogMC4ycmVtIDJyZW07XG59Il19 */";
     /***/
   },
 
@@ -1770,7 +2113,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     !*** ./src/app/store/actions/posts.actions.ts ***!
     \************************************************/
 
-  /*! exports provided: featureKey, deletePostRequest, deletePostSuccess, deletePostFailure, getPostsRequest, getPostsSuccess, getPostsFailure */
+  /*! exports provided: featureKey, deletePostRequest, deletePostSuccess, deletePostFailure, getPostsRequest, getPostsSuccess, getPostsFailure, updateOrderRequest, updateOrderSuccess, updateOrderFailure */
 
   /***/
   function srcAppStoreActionsPostsActionsTs(module, __webpack_exports__, __webpack_require__) {
@@ -1819,6 +2162,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     __webpack_require__.d(__webpack_exports__, "getPostsFailure", function () {
       return getPostsFailure;
     });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "updateOrderRequest", function () {
+      return updateOrderRequest;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "updateOrderSuccess", function () {
+      return updateOrderSuccess;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "updateOrderFailure", function () {
+      return updateOrderFailure;
+    });
     /* harmony import */
 
 
@@ -1839,6 +2200,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var getPostsRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createAction"])("[".concat(featureKey, "] getPostsRequest"));
     var getPostsSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createAction"])("[".concat(featureKey, "] getPostsSuccess"), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["props"])());
     var getPostsFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createAction"])("[".concat(featureKey, "] getPostsFailure"), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["props"])());
+    var updateOrderRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createAction"])("[".concat(featureKey, "] updateOrderRequest"), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["props"])());
+    var updateOrderSuccess = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createAction"])("[".concat(featureKey, "] updateOrderSuccess"), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["props"])());
+    var updateOrderFailure = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createAction"])("[".concat(featureKey, "] updateOrderFailure"), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["props"])());
     /***/
   },
 
@@ -1882,7 +2246,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var reducers = {
       auth: _reducers_auth_reducer__WEBPACK_IMPORTED_MODULE_1__["reducer"],
-      post: _reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_2__["reducer"]
+      posts: _reducers_posts_reducer__WEBPACK_IMPORTED_MODULE_2__["reducer"]
     };
     /***/
   },
@@ -1956,7 +2320,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./node_modules/rxjs/_esm2015/index.js");
 
     var AuthEffects = function AuthEffects(actions$, router, auth) {
-      var _this4 = this;
+      var _this7 = this;
 
       _classCallCheck(this, AuthEffects);
 
@@ -1964,14 +2328,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.router = router;
       this.auth = auth;
       this.LoginRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-        return _this4.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (action) {
+        return _this7.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (action) {
           return action.payload;
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(function (data) {
-          return _this4.auth.login(data.email, data.password).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
-            return Object(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"])({
+          return _this7.auth.login(data.email, data.password).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(function (res) {
+            return [Object(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"])({
               token: res.token,
               email: res.email
-            });
+            })];
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(function (error) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_7__["of"])(Object(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginFailure"])({
               error: error
@@ -1980,20 +2344,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }));
       });
       this.LoginSuccess$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-        return _this4.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (user) {
+        return _this7.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (user) {
           localStorage.setItem('token', user.token);
-          localStorage.setItem('user_email', user.email);
 
-          _this4.router.navigate(['calendar']);
+          _this7.router.navigate(['calendar']);
         }));
       }, {
         dispatch: false
       });
       this.Logout$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-        return _this4.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["logout"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
+        return _this7.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["logout"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
           localStorage.removeItem('token');
 
-          _this4.router.navigate(['']);
+          _this7.router.navigate(['']);
         }));
       }, {
         dispatch: false
@@ -2054,69 +2417,93 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../../endpoint/endpoint.service */
     "./src/app/endpoint/endpoint.service.ts");
     /* harmony import */
 
 
-    var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! rxjs/operators */
     "./node_modules/rxjs/_esm2015/operators/index.js");
     /* harmony import */
 
 
-    var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! rxjs */
     "./node_modules/rxjs/_esm2015/index.js");
     /* harmony import */
 
 
-    var _ngrx_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _ngrx_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! @ngrx/store */
     "./node_modules/@ngrx/store/fesm2015/store.js");
     /* harmony import */
 
 
-    var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ../actions/posts.actions */
     "./src/app/store/actions/posts.actions.ts");
 
-    var PostsEffects = function PostsEffects(actions$, store, postService) {
-      var _this5 = this;
+    var PostsEffects = function PostsEffects(actions$, store, router, postService) {
+      var _this8 = this;
 
       _classCallCheck(this, PostsEffects);
 
       this.actions$ = actions$;
       this.store = store;
+      this.router = router;
       this.postService = postService;
       this.GetPostsRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-        return _this5.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (action) {
-          return _this5.postService.getPosts().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
-            return Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsSuccess"])({
+        return _this8.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["getPostsRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["mergeMap"])(function (action) {
+          return _this8.postService.getPosts().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+            return Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["getPostsSuccess"])({
               payload: data
             });
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsFailure"])({
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function (error) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["of"])(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["getPostsFailure"])({
               error: error
             }));
           }));
         }));
       });
-      this.DeletePropertyRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-        return _this5.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (action) {
-          return action.id;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (_ref) {
-          var _ref2 = _slicedToArray(_ref, 1),
-              id = _ref2[0];
-
-          return _this5.postService.deletePost(id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function () {
-            return [Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostSuccess"])(), Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["getPostsRequest"])()];
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_7__["deletePostFailure"])({
+      this.UpdateOrderRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+        return _this8.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["updateOrderRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (action) {
+          return action.posts;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["mergeMap"])(function (posts) {
+          return _this8.postService.updateOrderPost(posts).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (data) {
+            return Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["updateOrderSuccess"])({
+              payload: data
+            });
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function (error) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["of"])(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["updateOrderFailure"])({
               error: error
             }));
           }));
+        }));
+      });
+      this.DeletePostRequest$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+        return _this8.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["deletePostRequest"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (action) {
+          return action.id;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["mergeMap"])(function (id) {
+          return _this8.postService.deletePost(id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function () {
+            return [Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["deletePostSuccess"])()];
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(function (error) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["of"])(Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["deletePostFailure"])({
+              error: error
+            }));
+          }));
+        }));
+      });
+      this.DeletePostSuccess$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+        return _this8.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["deletePostSuccess"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function () {
+          return Object(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_8__["getPostsRequest"])();
         }));
       });
     };
@@ -2125,9 +2512,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       return [{
         type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"]
       }, {
-        type: _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["Store"]
+        type: _ngrx_store__WEBPACK_IMPORTED_MODULE_7__["Store"]
       }, {
-        type: _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_3__["EndpointService"]
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _endpoint_endpoint_service__WEBPACK_IMPORTED_MODULE_4__["EndpointService"]
       }];
     };
 
@@ -2190,9 +2579,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       user: null,
       error: null
     };
-    var authReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_2__["loginSuccess"], function (state, _ref3) {
-      var token = _ref3.token,
-          email = _ref3.email;
+    var authReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_2__["loginSuccess"], function (state, _ref) {
+      var token = _ref.token,
+          email = _ref.email;
       return Object.assign({}, state, {
         isAuthenticated: true,
         user: {
@@ -2201,8 +2590,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         },
         error: null
       });
-    }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_2__["loginFailure"], function (state, _ref4) {
-      var error = _ref4.error;
+    }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_2__["loginFailure"], function (state, _ref2) {
+      var error = _ref2.error;
       return Object.assign({}, state, {
         error: 'Incorrect email or password.'
       });
@@ -2235,7 +2624,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     !*** ./src/app/store/reducers/posts.reducer.ts ***!
     \*************************************************/
 
-  /*! exports provided: initialState, reducer, getposts, getpost, isLoadingpost, getTotalposts, getSongsReleaseDates */
+  /*! exports provided: initialState, reducer, getposts, getpost, isLoadingpost, getTotalposts */
 
   /***/
   function srcAppStoreReducersPostsReducerTs(module, __webpack_exports__, __webpack_require__) {
@@ -2278,12 +2667,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     __webpack_require__.d(__webpack_exports__, "getTotalposts", function () {
       return getTotalposts;
     });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "getSongsReleaseDates", function () {
-      return getSongsReleaseDates;
-    });
     /* harmony import */
 
 
@@ -2316,11 +2699,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       error: null,
       loading: false
     };
-    var postReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["getPostsSuccess"], function (state, _ref5) {
-      var payload = _ref5.payload;
+    var postReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["getPostsRequest"], function (state) {
       return Object.assign({}, state, {
-        posts: payload.posts,
-        totalPosts: payload.maxPosts
+        loading: true
+      });
+    }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__["getPostsSuccess"], function (state, _ref3) {
+      var payload = _ref3.payload;
+      return Object.assign({}, state, {
+        posts: payload.posts.sort(function (a, b) {
+          return a.order - b.order;
+        }),
+        totalPosts: payload.maxPosts,
+        loading: false
       });
     }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_auth_actions__WEBPACK_IMPORTED_MODULE_3__["logout"], function () {
       return initialState;
@@ -2342,17 +2732,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
     var getTotalposts = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(postState, function (state) {
       return state.totalPosts;
-    });
-    var getSongsReleaseDates = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createSelector"])(getposts, function (state) {
-      var arr = [];
-
-      if (state) {
-        state.forEach(function (el) {
-          arr.push(el.release_date);
-        });
-      }
-
-      return arr;
     });
     /***/
   },

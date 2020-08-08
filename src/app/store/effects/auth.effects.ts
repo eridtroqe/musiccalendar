@@ -33,7 +33,6 @@ export class AuthEffects {
              ofType(loginSuccess),
              tap((user) => {
                  localStorage.setItem('token', user.token);
-                 localStorage.setItem('user_email', user.email);
                  this.router.navigate(['calendar']);
                 }));
  }, {dispatch: false});

@@ -12,8 +12,11 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://erid:" + process.env.MONGO_ATLAS_PW + "@cluster0-ambpl.mongodb.net/music?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true  })
+    "mongodb+srv://erid:erid12345@cluster0-ambpl.mongodb.net/music?retryWrites=true&w=majority",
+    { useNewUrlParser: true, 
+      useCreateIndex: true,
+      useUnifiedTopology: true
+    })
   .then(() => {
     console.log("Connected to database!");
   })
@@ -36,13 +39,13 @@ mongoose
     );
     next();
   });
-
-  app.use("/api/user", userRoutes);
-  app.use("/api/posts", postRoutes);
-
+  
   app.use((req, res, next) => {
     res.sendFile(path.join(__dirname,"music", "index.html"));
   });
+  app.use("/api/user", userRoutes);
+  app.use("/api/posts", postRoutes);
+
   
 
 
